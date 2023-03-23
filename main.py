@@ -14,8 +14,13 @@ __version__ = '1.0.0'
 query = "SELECT * FROM database_name.table_name"
 
 def query_timestream(query):
-    client = boto3.client('timestream-query')
-    return client.query(QueryString=query)
+    try:
+        client = boto3.client('timestream-query')
+        return client.query(QueryString=query)
+    except Exception as e:
+        print('Error when calling AWS Timestream.')
+        print(e)
+        exit(1)
 
 def process_data(query):
     results = query_timestream(query)
