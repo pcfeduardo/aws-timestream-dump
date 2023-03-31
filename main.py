@@ -31,9 +31,6 @@ def query_timestream(query, next_token=None):
         print(e)
         exit(1)
 
-# def unload_database(next_token):
-
-
 def process_data(query):
     next_token = None
     data = {}
